@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>Applications</title>
+</head>
+<body>
+  <div id="myNav" class="overlay">
+    <div class="overlay-content">
+      <a href="index.html">🏠 Home</a><br>
+        <a href="home.html">🔎 Browse</a><br>
+    </div>
+  </div>
+<br><br>
+<div id="overlay"></div>
+    <main>
+   <!-- <label>Name:</label>
+        <input type="text" id="name-input">
+        <button id="add-name-btn">Add Name</button> -->
+
+        
+        <br><br><br><br><br>
+        <div>
+            <input type="text" id="search-input" placeholder="Search by name">
+            <button id="search-btn">Search</button>
+            <button id="reset-btn">↻</button>
+          </div>
+          <div><button id="export-btn">
+            <div class="imge"><img src="excel.png" width="20px" height="20px" ></div>
+              Export to CSV</button></div>
+        <table id="table">
+            <thead>
+                <tr>
+                  <th data-column="id" data-direction="asc">ID</th>
+                  <th data-column="name" data-direction="asc">Name</th>
+                  <th data-column="platform" data-direction="asc">Platform</th>
+                  <th data-column="status" data-direction="asc">Status</th>
+                  <th data-column="date_added" data-direction="asc">Date Added</th>
+                  <th data-column="comment" data-direction="asc">Comment</th>
+                </tr>
+              </thead>
+              
+            <tbody></tbody>
+
+        </table>
+        
+    </main>
+    <div>
+      <button id="previous-btn">🡸</button>
+      <button id="next-btn" style="position: absolute;">🡺</button>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

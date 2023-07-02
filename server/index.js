@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  fetch('http://localhost:5000/getAll')
+  fetch('https://allowapps.onrender.com/getAll')
     .then(response => response.json())
     .then(data => {
       const { currentPage, totalPages } = data;

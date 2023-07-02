@@ -17,7 +17,7 @@ function search() {
   currentPage = 1; 
 
   if (searchValue.trim() !== '') {
-    fetch(`http://localhost:5000/search/${encodeURIComponent(searchValue)}?page=${currentPage}`)
+    fetch(`https://allowapps.onrender.com/search/${encodeURIComponent(searchValue)}?page=${currentPage}`)
       .then(response => response.json())
       .then(data => {
         loadHTMLTable(currentPage, searchValue);
@@ -60,9 +60,9 @@ let totalPages = 1;
 function loadHTMLTable(page, searchValue = '') {
   const table = document.querySelector('table tbody');
 
-  let url = `http://localhost:5000/getAll?page=${page}`;
+  let url = `https://allowapps.onrender.com/getAll?page=${page}`;
   if (searchValue.trim() !== '') {
-    url = `http://localhost:5000/search/${searchValue}?page=${page}`;
+    url = `https://allowapps.onrender.com/search/${searchValue}?page=${page}`;
   }
 
   fetch(url)

@@ -77,7 +77,7 @@ function loadHTMLTable(page, searchValue = '') {
 
     data.data.forEach(function ({ id, name, platform, status, date_added, comment }) {
       tableHtml += "<tr>";
-      tableHtml += `<td>${id}</td>`;
+      tableHtml += `<td data-id="${id}">${id}</td>`;
       tableHtml += `<td>${name}</td>`;
       tableHtml += `<td>${platform}</td>`;
       tableHtml += `<td>${status}</td>`;
@@ -148,39 +148,164 @@ const exportButton = document.getElementById("export-btn");
 exportButton.addEventListener("click", exportToCSV);
 
 function exportToCSV() {
-  const table = document.getElementById("table");
-  const rows = Array.from(table.getElementsByTagName("tr"));
+  fetch('https://allowapps.onrender.com/getAll')
+    .then(response => response.json())
+    .then(data => {
+      const totalPages = data.totalPages;
+      const currentPage = data.currentPage;
+      const rows = data.data;
 
-  const data = rows.map((row) => {
-    const cells = Array.from(row.getElementsByTagName("td"));
-    return cells.map((cell) => cell.textContent);
+      if (rows.length === 0) {
+        alert("No data to export.");
+        return;
+      }
+
+      // Fetch remaining pages
+      const fetchPromises = [];
+      for (let page = 2; page <= totalPages; page++) {
+        fetchPromises.push(fetch(`https://allowapps.onrender.com/getAll?page=${page}`)
+          .then(response => response.json())
+          .then(data => {
+            rows.push(...data.data);
+          })
+        );
+      }
+
+      // Wait for all fetch requests to complete
+      Promise.all(fetchPromises)
+        .then(() => {
+          const csvContent = convertToCSV(rows);
+
+          const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+
+          const link = document.createElement("a");
+          if (link.download !== undefined) {
+            const url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", "data.csv");
+            link.style.visibility = "hidden";
+
+            document.body.appendChild(link);
+
+            link.click();
+
+            document.body.removeChild(link);
+          } else {
+            alert("Export to CSV is not supported in this browser.");
+          }
+        })
+        .catch(err => console.log(err));
+    })
+    .catch(err => console.log(err));
+}
+
+
+function convertToCSV(data) {
+  const headers = Object.keys(data[0]).join(",");
+  const rows = data.map(row => Object.values(row).map(cell => `"${cell}"`).join(","));
+  return [headers, ...rows].join("\n");
+}
+
+
+//right click thingy
+
+const table = document.querySelector('table');
+let isTextSelected = false;
+
+
+
+table.addEventListener('contextmenu', function(event) {
+  const clickedRow = event.target.closest('tr');
+  if (!clickedRow) return;
+
+  const isTextSelected = window.getSelection().toString() !== '';
+
+  if (!isTextSelected) {
+    event.preventDefault();
+
+    // Retrieve the data-id attribute to get the unique identifier of the row
+    const rowId = clickedRow.querySelector('td[data-id]').getAttribute('data-id');
+
+    // Show the options menu and pass the rowId
+    showOptionsMenu(event.clientX, event.clientY, rowId);
+  }
+});
+
+function showOptionsMenu(x, y, rowId) {
+  const optionsMenu = document.createElement('ul');
+  optionsMenu.className = 'options-menu';
+  optionsMenu.innerHTML = `
+    <li id="export-option">Export row</li>
+  `;
+
+  // Handle the export option click event
+  const exportOption = optionsMenu.querySelector('#export-option');
+  exportOption.addEventListener('click', function() {
+    exportRowToCSVFile(rowId);
   });
 
-  const csvContent = convertToCSV(data);
+  // Position the menu and append it to the body
+  optionsMenu.style.left = x + 'px';
+  optionsMenu.style.top = y + 'px';
+  document.body.appendChild(optionsMenu);
 
-  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  // Remove the options menu when clicked outside
+  document.addEventListener('click', function(event) {
+    if (!optionsMenu.contains(event.target)) {
+      optionsMenu.remove();
+    }
+  });
+}
 
-  const link = document.createElement("a");
+document.addEventListener('mousedown', function(event) {
+  const optionsMenu = document.querySelector('.options-menu');
+  if (optionsMenu && !optionsMenu.contains(event.target)) {
+    optionsMenu.remove();
+  }
+});
+
+document.addEventListener('click', function(event) {
+  const optionsMenu = document.querySelector('.options-menu');
+  if (optionsMenu && !optionsMenu.contains(event.target)) {
+    optionsMenu.remove();
+  }
+});
+
+
+
+
+
+
+
+
+function exportRowToCSVFile(rowId) {
+  const table = document.getElementById('table');
+  const row = table.querySelector(`td[data-id="${rowId}"]`).closest('tr');
+
+  const cells = Array.from(row.getElementsByTagName('td'));
+  const rowData = cells.map((cell) => cell.textContent);
+
+  const csvContent = convertRowToCSV(rowData);
+
+  // Download the CSV file
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
   if (link.download !== undefined) {
     const url = URL.createObjectURL(blob);
-    link.setAttribute("href", url);
-    link.setAttribute("download", "data.csv");
-    link.style.visibility = "hidden";
-
+    link.setAttribute('href', url);
+    link.setAttribute('download', 'row_data.csv');
+    link.style.visibility = 'hidden';
     document.body.appendChild(link);
-
     link.click();
-
     document.body.removeChild(link);
-  } else {
-    alert("Export to CSV is not supported in this browser.");
   }
 }
 
-function convertToCSV(data) {
-  const rows = data.map((row) => row.join(","));
-  return rows.join("\n");
+function convertRowToCSV(rowData) {
+  const cells = rowData.map(cell => `"${cell}"`);
+  return cells.join(',');
 }
+
 
 
 

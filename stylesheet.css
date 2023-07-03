@@ -109,6 +109,7 @@ tr:hover {background-color: #a7a7a7;}
 
   .overlay-content a:nth-child(odd) {
     background-color: orange;
+    color: white;
   }
   
   .overlay-content a:nth-child(odd):hover {
@@ -170,8 +171,8 @@ tr:hover {background-color: #a7a7a7;}
 
   #export-btn {
     position: absolute;
-    margin-top: -35px;
-    margin-left: 550px;
+    
+    margin-top: 10px;
     float: right;
     font-size: medium;
     text-align: center;
@@ -180,6 +181,36 @@ tr:hover {background-color: #a7a7a7;}
     cursor: pointer;
     padding-top: 5px;
   }
+
+  #add-entry-btn {
+    margin-right: 470px;
+    margin-top: 10px;
+    font-size: medium;
+    text-align: center;
+    border-radius: 5px;
+    height: 35px;
+    cursor: pointer;
+    
+
+  }
+
+  a:link {
+    text-decoration: none;
+    color: black;
+}
+
+a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:active {
+    text-decoration: none;
+}
 
   .imge {
     float: left;
@@ -196,4 +227,48 @@ tr:hover {background-color: #a7a7a7;}
     border-radius: 5px;
     position: absolute;
     margin-left: 850px;
+  }
+
+  form {
+    margin: 20px;
+    margin-left: 200px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  input[type="text"] {
+    width: 300px;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+
+  input[type="submit"] {
+    padding: 8px 20px;
+    background-color: orange;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  ul.options-menu {
+    position: absolute;
+    list-style-type: none;
+    background-color: #f9f9f9;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  ul.options-menu li {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  ul.options-menu li:hover {
+    background-color: #e1e1e1;
   }

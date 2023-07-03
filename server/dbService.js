@@ -7,7 +7,7 @@ const connection = mysql.createConnection({
     host: process.env.HOST,
     user: process.env.USER, 
     password: process.env.PASSWORD,
-    database: process.env.DATABASE, 
+    database: process.env.DATABASE,  
     port: process.env.DB_PORT,
 });
 
@@ -102,6 +102,31 @@ class DbService {
           console.log(error);
         }
       }
+
+
+      async insertNewEntry(name, platform, status, date, comment) {
+        try {
+          if (!date) {
+            date = new Date().toISOString().slice(0, 19).replace('T', ' '); // Get current date in the format 'YYYY-MM-DD HH:mm:ss'
+          }
+      
+          const response = await new Promise((resolve, reject) => {
+            const query = "INSERT INTO apps (name, platform, status, date_added, comment) VALUES (?, ?, ?, ?, ?);";
+      
+            connection.query(query, [name, platform, status, date, comment], (err, result) => {
+              if (err) reject(new Error(err.message));
+              resolve(result);
+            });
+          });
+      
+          return response;
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      
+
+      
       
 };
 

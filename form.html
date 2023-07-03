@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>Add Entry</title>
+</head>
+<body>
+  
+  <main>
+    <br><br><br><br><br>
+    <form id="add-entry-form">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required><br><br>
+
+      <label for="platform">Platform:</label>
+      <input type="text" id="platform" name="platform" required><br><br>
+
+      <label for="status">Status:</label>
+      <input type="text" id="status" name="status" required><br><br>
+
+      <label for="date_added">Date:</label>
+      <input type="date" id="date_added" name="date_added"><br><br>
+
+      <label for="comment">Comment:</label>
+      <textarea id="comment" name="comment" placeholder="200 characters max"></textarea><br><br>
+
+      <input type="submit" value="Submit">
+    </form>
+  </main>
+
+  <script src="form.js"></script>
+</body>
+</html>

@@ -11,14 +11,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended : false}));
  
 //create
-app.post('/insert', (request, response) => { 
-    const {name} = request.body; 
-    const db = dbService.getDbServiceInstance();
- 
-    const result = db.insertNewName(name);
+app.post('/insert', (request, response) => {
+  const { name, platform, status, date_added, comment } = request.body;
+  const db = dbService.getDbServiceInstance();
 
-    result 
-    .then(data => response.json({success: true}))
+  const result = db.insertNewEntry(name, platform, status, date_added, comment);
+
+  result
+    .then(() => response.json({ success: true }))
     .catch(err => console.log(err));
 });
    

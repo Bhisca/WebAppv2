@@ -3,6 +3,10 @@ main {
     margin: 0px auto;
 }
 
+.form {
+    height: 100%;
+}
+
 body{
     background: #f2f2f2;
     font-family: 'Open Sans', sans-serif;

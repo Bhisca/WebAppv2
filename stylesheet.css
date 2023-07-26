@@ -1,43 +1,44 @@
 main {
-    width: 50%;
-    margin: 0px auto;
+  width: 50%;
+  margin: 0px auto;
 }
 
 
 body{
-    background: #f2f2f2;
-    font-family: 'Open Sans', sans-serif;
-  }
+  background: #f2f2f2;
+  font-family: 'Trebuchet MS', sans-serif;
+}
 
 h1 {
-    text-align: center;
-    font-size: 50px;
-    font-family: Arial, Helvetica, sans-serif;
-    margin-right: -180px;
+  text-align: center;
+  font-size: 50px;
+  font-family: 'Trebuchet MS', sans-serif;
+  margin-right: -180px;
 }
 
 table {
-    margin: 50px auto;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 130%;
+  margin: 50px auto;
+  font-family: 'Trebuchet MS', sans-serif;
+  width: 130%;
 }
 
 table, th, td {
-    border-collapse: collapse;
-    border: 1px solid rgb(169, 169, 169);
-    text-align: left;
+  border-collapse: collapse;
+  border: 0px solid rgb(169, 169, 169);
+  text-align: left;
 }
 
 th, td {
-    padding: 5px;;
+  padding: 5px;;
 }
 
 th {
-    padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: orange;
-  color: white;
+  padding-top: 12px;
+padding-bottom: 12px;
+text-align: left;
+background-color: orange;
+color: white;
+border: 1px solid rgb(255, 255, 255);
 }
 
 tr:nth-child(even){background-color: #cfcfcf;}
@@ -45,231 +46,244 @@ tr:hover {background-color: #a7a7a7;}
 
 
 #search-input {
-    width: 51%;
-    border: 3px solid orange;
-    border-right: none;
-    padding: 5px;
-    height: 20px;
-    border-radius: 5px 0 0 5px;
-    outline: none;
-    color: #9DBFAF;
-    
-    
+  width: 51%;
+  border: 3px solid orange;
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9DBFAF;
+  
+  
 }
 
 #search-input:focus {
-    color: orange;
+  color: orange;
 }
 
 #search-btn {
-    width: 80px;
-  height: 35.5px;
-  border-bottom: 5px solid orange;
-  border-top: 0px solid orange;
-  border-left: 1px solid orange;
-  border-right: 1px solid orange;
-  background: orange;
-  text-align: center;
-  color: #fff;
-  border-radius: 0 5px 5px 0;
-  cursor: pointer;
-  font-size: 20px;
-  margin-left: -5px;
-  margin-top: 2px;
+  width: 80px;
+height: 35.5px;
+border-color: orange;
+background: orange;
+text-align: center;
+color: #fff;
+border-radius: 0 5px 5px 0;
+cursor: pointer;
+font-size: 20px;
+margin-left: -5px;
+font-family: 'Trebuchet MS', sans-serif;
+position: absolute;
 
-    
+  
 }
 
 
-  #reset-btn {
-    width: 50px;
-    height: 35px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
 
-  .overlay {
-    height: 100%;
-    width: 0;
-    position: fixed;
-  
-    top: 0;
-    left: 0;
-    background-color: orange;
-    
-    transition: 0s;
-  }
-  
-  .overlay-content {
-    position: relative;
-    top: 5%;
-    width: 100%;
-    text-align: top;
-    margin-top: 10px;
-  }
 
-  .overlay-content a:nth-child(odd) {
-    background-color: orange;
-    color: white;
-  }
-  
-  .overlay-content a:nth-child(odd):hover {
-    background-color: #a7a7a7;
-  }
-  
-  .overlay-content a:nth-child(even) {
-    background-color: orange;
-  }
-  
-  .overlay-content a:nth-child(even):hover {
-    background-color: #f0f0f0;
-  }
-  
-  .overlay a {
-    margin-top: -10px;
-    padding: 8px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #f0f0f0;
-    display: block;
-    transition: 0s;
-  }
-  
-  .overlay a:hover,
-  .overlay a:focus {
-    color: #f1f1f1;
-  }
-  
-  .overlay .closebtn {
-    position: left;
-    margin-top: 9px;
-    font-size: 60px;
-  }
-  
+#reset-btn {
+  width: 50px;
+  height: 35px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: white;
+  position: absolute;
+  margin-left: 80px;
+}
 
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  background-color: orange;
   
+  transition: 0s;
+}
 
-  
-  #myBtn {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 30px;
-    z-index: 99;
-    font-size: 18px;
-    border: none;
-    outline: none;
-    background-color: blue;
-    color: white;
-    cursor: pointer;
-    padding: 15px;
-    border-radius: 50%;
-  }
-  
-  #myBtn:hover {
-    background-color: #555;
-  }
+.overlay-content {
+  position: relative;
+  top: 5%;
+  width: 100%;
+  text-align: top;
+  margin-top: 10px;
+}
 
-  #export-btn {
-    position: absolute;
-    
-    margin-top: 10px;
-    float: right;
-    font-size: medium;
-    text-align: center;
-    border-radius: 5px;
-    height: 35px;
-    cursor: pointer;
-    padding-top: 5px;
-  }
+.overlay-content a:nth-child(odd) {
+  background-color: orange;
+  color: white;
+}
 
-  #add-entry-btn {
-    margin-left: 150px;
-    margin-top: 10px;
-    font-size: medium;
-    text-align: center;
-    border-radius: 5px;
-    height: 35px;
-    cursor: pointer;
-    position: absolute;
-    
+.overlay-content a:nth-child(odd):hover {
+  background-color: #a7a7a7;
+}
 
-  }
+.overlay-content a:nth-child(even) {
+  background-color: orange;
+}
 
-  a:link {
-    text-decoration: none;
-    color: black;
+.overlay-content a:nth-child(even):hover {
+  background-color: #f0f0f0;
+}
+
+.overlay a {
+  margin-top: -10px;
+  padding: 8px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #f0f0f0;
+  display: block;
+  transition: 0s;
+}
+
+.overlay a:hover,
+.overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: left;
+  margin-top: 9px;
+  font-size: 60px;
+}
+
+
+
+
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: blue;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 50%;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+
+#export-btn {
+  position: absolute;
+  background-color: white;
+  margin-top: 10px;
+  float: right;
+  font-size: medium;
+  text-align: center;
+  border-radius: 5px;
+  height: 35px;
+  cursor: pointer;
+  padding-top: 5px;
+  font-family: 'Trebuchet MS', sans-serif;
+}
+
+#export-btn:hover {
+  background-color: rgb(148, 148, 148);
+}
+
+#add-entry-btn {
+  background-color: white;
+  margin-left: 150px;
+  margin-top: 10px;
+  font-size: medium;
+  text-align: center;
+  border-radius: 5px;
+  height: 35px;
+  cursor: pointer;
+  position: absolute;
+  font-family: 'Trebuchet MS', sans-serif;
+
+}
+
+#add-entry-btn:hover{
+  background-color: rgb(148, 148, 148);
+}
+
+a:link {
+  text-decoration: none;
+  color: black;
 }
 
 a:visited {
-    text-decoration: none;
-    color: black;
+  text-decoration: none;
+  color: black;
 }
 
 a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 a:active {
-    text-decoration: none;
+  text-decoration: none;
 }
 
-  .imge {
-    float: left;
-    margin-right: 5px;
-  }
+.imge {
+  float: left;
+  margin-right: 5px;
+}
 
-  #previous-btn{
-    border-radius: 5px;
-    position: absolute;
-  }
+#previous-btn{
+  border-radius: 5px;
+  position: absolute;
+}
 
-  #next-btn{
-    border-radius: 5px;
-    position: absolute;
-    margin-left: 50px;
-  }
+#next-btn{
+  border-radius: 5px;
+  position: absolute;
+  margin-left: 50px;
+}
 
-  form {
-    margin: 20px;
-    margin-left: 200px;
-  }
+form {
+  margin: 20px;
+  margin-left: 200px;
+}
 
-  label {
-    display: block;
-    margin-bottom: 5px;
-  }
+label {
+  display: block;
+  margin-bottom: 5px;
+}
 
-  input[type="text"] {
-    width: 300px;
-    padding: 5px;
-    margin-bottom: 10px;
-  }
+input[type="text"] {
+  width: 300px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
 
-  input[type="submit"] {
-    padding: 8px 20px;
-    background-color: orange;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
+input[type="submit"] {
+  padding: 8px 20px;
+  background-color: orange;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
 
-  ul.options-menu {
-    position: absolute;
-    list-style-type: none;
-    background-color: #f9f9f9;
-    padding: 0;
-    margin: 0;
-    border: 1px solid #ddd;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  }
-  
-  ul.options-menu li {
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  ul.options-menu li:hover {
-    background-color: #e1e1e1;
-  }
+ul.options-menu {
+  position: absolute;
+  list-style-type: none;
+  background-color: #f9f9f9;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ddd;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+ul.options-menu li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+ul.options-menu li:hover {
+  background-color: #e1e1e1;
+}

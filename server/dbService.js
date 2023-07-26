@@ -29,7 +29,7 @@ class DbService {
           const offset = (page - 1) * perPage; 
       
           const response = await new Promise((resolve, reject) => {
-            const query = "SELECT * FROM apps LIMIT ? OFFSET ?;";
+            const query = "SELECT * FROM apps ORDER BY `apps`.`name` ASC LIMIT ? OFFSET ?;";
       
             connection.query(query, [perPage, offset], (err, results) => {
               if (err) reject(new Error(err.message));

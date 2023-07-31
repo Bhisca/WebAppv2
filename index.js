@@ -396,8 +396,8 @@ document.addEventListener('click', function(event) {
     seeLessBtn.addEventListener('click', () => {
       fullComment.style.display = 'none';
       shortComment.style.display = 'block';
+      seeLessBtn.style.display = 'none';
       event.target.style.display = 'block';
-      seeLessBtn.remove();
     });
     commentContent.appendChild(seeLessBtn);
   } else if (event.target.classList.contains('see-less-btn')) {
@@ -414,8 +414,8 @@ document.addEventListener('click', function(event) {
     seeMoreBtn.addEventListener('click', () => {
       fullComment.style.display = 'block';
       shortComment.style.display = 'none';
+      seeMoreBtn.style.display = 'none';
       event.target.style.display = 'block';
-      seeMoreBtn.remove();
     });
     commentContent.appendChild(seeMoreBtn);
   }

@@ -46,11 +46,11 @@ tr:nth-child(even){background-color: #cfcfcf;}
 tr:hover {background-color: #a7a7a7;}
 
 th.comment {
-  width: 100px;
+  width: 50px;
 }
 
 td.comment {
-        max-width: 100px;
+        max-width: 50px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;

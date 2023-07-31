@@ -144,7 +144,7 @@ position: absolute;
   color: #f1f1f1;
 }
 
-.overlay a:active{
+.overlay-content a:active{
   background-color: #f1f1f1;
 }
 

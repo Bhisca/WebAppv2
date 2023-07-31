@@ -306,31 +306,6 @@ function convertRowToCSV(rowData) {
   return cells.join(',');
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  const overlayContent = document.querySelector('.overlay-content');
 
-  overlayContent.addEventListener('click', function (event) {
-    if (event.target.tagName === 'A') {
-      // Remove 'selected' class from all overlay links
-      const overlayLinks = overlayContent.querySelectorAll('a');
-      overlayLinks.forEach(link => link.classList.remove('selected'));
-
-      // Add 'selected' class to the clicked overlay link
-      event.target.classList.add('selected');
-
-      // Prevent the default link behavior
-      event.preventDefault();
-    }
-  });
-
-  // Add a click event listener to the overlay div
-  const overlay = document.getElementById('myNav');
-  overlay.addEventListener('click', function (event) {
-    // Close the overlay when clicking outside the overlay content
-    if (!event.target.classList.contains('overlay-content')) {
-      closeOverlay();
-    }
-  });
-});
 // Initial table load
 loadHTMLTable(currentPage);

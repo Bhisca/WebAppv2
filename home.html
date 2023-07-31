@@ -11,7 +11,7 @@
     <div class="overlay-content">
       <a href="index.html">🏠 Home</a><br>
         <a href="home.html">🔎 Browse</a><br>
-		<a href="request.html">➕ New Request</a><br>
+        <a href="request.html">➕ New Request</a><br>
     </div>
   </div>
 <br><br>
@@ -25,13 +25,41 @@
 
         
         <br><br><br><br><br>
-	    
         <div>
             <input type="text" id="search-input" placeholder="Search by name">
             <button id="search-btn">Search</button>
             <button id="reset-btn">↻</button>
           </div>
-          <button id="add-entry-btn" style="float: right;"><a href="form.html">Add New Entry</a></button>
+         
+
+          <button id="add-new-entry-btn">Add New Entry</button>
+
+    
+    <div id="popup-overlay"></div>
+    <div id="popup-form">
+      
+      <form id="add-entry-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="platform">Platform:</label>
+        <input type="text" id="platform" name="platform" required><br><br>
+
+        <label for="status">Status:</label>
+        <input type="text" id="status" name="status" required><br><br>
+
+        <label for="date_added">Date:</label>
+        <input type="date" id="date_added" name="date_added"><br><br>
+
+        <label for="comment">Comment:</label>
+        <textarea id="comment" name="comment" placeholder="200 characters max"></textarea><br><br>
+
+        <input type="submit" value="Submit">
+        <button id="close-btn">Close</button>
+      </form>
+    </div>
+
+          
           <div><button id="export-btn">
             <div class="imge"><img src="excel.png" width="20px" height="20px" ></div>
               Export to CSV</button></div>
@@ -50,19 +78,20 @@
             <tbody></tbody>
 
         </table>
-	    
-        <div>
-      <button id="previous-btn">🡸</button>
+        <button id="previous-btn">🡸</button>
       <button id="next-btn" style="position: absolute;">🡺</button>
-    </div>
+        
     </main>
     
 
+    
+      
     
 
     
 
 
     <script src="index.js"></script>
+    <script src="form.js"></script>
 </body>
 </html>

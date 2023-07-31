@@ -36,8 +36,8 @@ th, td {
   text-overflow: ellipsis;
 }
 
-tr {
-  line-height: 30px;
+td {
+  height: 30px;
 }
 
 th {

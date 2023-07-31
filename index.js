@@ -82,7 +82,7 @@ function loadHTMLTable(page, searchValue = '') {
       tableHtml += `<td>${platform}</td>`;
       tableHtml += `<td>${status}</td>`;
       tableHtml += `<td>${new Date(date_added).toDateString()}</td>`;
-      tableHtml += `<td class="comment">${truncateComment(comment)}</td>`;
+      tableHtml += `<td class="comment" data-comment="${comment}" data-max-length="100" data-expanded="false">${truncateComment(comment)}</td>`;
       tableHtml += "</tr>";
     });
 
@@ -353,19 +353,24 @@ const overlayLinks = document.querySelectorAll(".overlay-content a");
         highlightLink();
 
 
-function truncateComment(comment, maxLength = 100) {
+function truncateComment(comment) {
+  const maxLength = 100;
   if (comment.length > maxLength) {
-    return `${comment.slice(0, maxLength)}... <button class="see-more-btn" onclick="expandComment(this)">See More</button>`;
+    return `${comment.slice(0, maxLength)}... <button class="see-more-btn" onclick="toggleCommentExpansion(this)">See More</button>`;
   }
   return comment;
 }
 
-// Function to expand the comment to its full length
-function expandComment(button) {
+function toggleCommentExpansion(button) {
   const commentCell = button.parentNode;
-  const fullComment = commentCell.dataset.fullComment;
-  commentCell.innerHTML = `${fullComment} <button class="see-less-btn" onclick="truncateComment(this.dataset.comment, ${commentCell.dataset.maxLength})">See Less</button>`;
+  const expanded = commentCell.dataset.expanded === "true";
+  if (expanded) {
+    commentCell.innerHTML = truncateComment(commentCell.dataset.comment);
+    commentCell.dataset.expanded = "false";
+  } else {
+    commentCell.innerHTML = `${commentCell.dataset.comment} <button class="see-less-btn" onclick="toggleCommentExpansion(this)">See Less</button>`;
+    commentCell.dataset.expanded = "true";
+  }
 }
-
 // Initial table load
 loadHTMLTable(currentPage);

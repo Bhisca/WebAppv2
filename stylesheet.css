@@ -34,6 +34,7 @@ th, td {
   max-width: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 
@@ -329,4 +330,15 @@ ul.options-menu li {
 
 ul.options-menu li:hover {
   background-color: #e1e1e1;
+}
+
+.see-more-btn,
+.see-less-btn {
+  background: none;
+  border: none;
+  color: blue;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
+  margin-left: 5px;
 }

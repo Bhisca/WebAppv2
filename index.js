@@ -306,7 +306,17 @@ function convertRowToCSV(rowData) {
   return cells.join(',');
 }
 
+const overlayLinks = document.querySelectorAll('.overlay-content a');
+overlayLinks.forEach(link => {
+  link.addEventListener('click', function (event) {
+    // Remove 'selected' class from all overlay links
+    overlayLinks.forEach(link => link.classList.remove('selected'));
 
+    // Add 'selected' class to the clicked overlay link
+    this.classList.add('selected');
+    
+  });
+});
 
 // Initial table load
 loadHTMLTable(currentPage);

@@ -36,7 +36,7 @@ th, td {
   text-overflow: ellipsis;
 }
 
-td {
+tr {
   height: 30px;
 }
 

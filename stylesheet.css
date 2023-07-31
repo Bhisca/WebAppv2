@@ -140,9 +140,12 @@ position: absolute;
 }
 
 .overlay a:hover,
-.overlay a:focus,
-.overlay a:active{
+.overlay a:focus,{
   color: #f1f1f1;
+}
+
+.overlay a:active{
+  background-color: #f1f1f1;
 }
 
 

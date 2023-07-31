@@ -88,6 +88,13 @@ function loadHTMLTable(page, searchValue = '') {
 
     table.innerHTML = tableHtml;
 
+  const seeMoreButtons = document.querySelectorAll('.see-more-btn');
+  const seeLessButtons = document.querySelectorAll('.see-less-btn');
+
+  seeMoreButtons.forEach(button => button.addEventListener('click', expandComment));
+  seeLessButtons.forEach(button => button.addEventListener('click', truncateComment));
+
+
     // Update the totalPages variable
     totalPages = data.totalPages;
 
@@ -356,22 +363,25 @@ const overlayLinks = document.querySelectorAll(".overlay-content a");
 function formatComment(comment) {
   const maxLength = 100;
   if (comment.length > maxLength) {
-    return `${comment.slice(0, maxLength)}... <button class="see-more-btn" onclick="expandComment(this)">See More</button>`;
+    return `${comment.slice(0, maxLength)}... <button class="see-more-btn">See More</button>`;
   }
   return comment;
 }
 
-function expandComment(button) {
+function expandComment(event) {
+  const button = event.target;
   const commentCell = button.parentNode;
   const fullComment = commentCell.dataset.comment;
-  commentCell.innerHTML = `${fullComment} <button class="see-less-btn" onclick="truncateComment(this)">See Less</button>`;
+  commentCell.innerHTML = `${fullComment} <button class="see-less-btn">See Less</button>`;
 }
 
-function truncateComment(button) {
+function truncateComment(event) {
+  const button = event.target;
   const commentCell = button.parentNode;
   const maxLength = parseInt(commentCell.dataset.maxLength);
-  const truncatedComment = commentCell.dataset.comment.slice(0, maxLength) + `... <button class="see-more-btn" onclick="expandComment(this)">See More</button>`;
+  const truncatedComment = commentCell.dataset.comment.slice(0, maxLength) + `... <button class="see-more-btn">See More</button>`;
   commentCell.innerHTML = truncatedComment;
 }
+
 // Initial table load
 loadHTMLTable(currentPage);

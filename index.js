@@ -82,7 +82,7 @@ function loadHTMLTable(page, searchValue = '') {
       tableHtml += `<td>${platform}</td>`;
       tableHtml += `<td>${status}</td>`;
       tableHtml += `<td>${new Date(date_added).toDateString()}</td>`;
-      tableHtml += `<td>${comment}</td>`;
+      tableHtml += `<td class="comment">${truncateComment(comment)}</td>`;
       tableHtml += "</tr>";
     });
 
@@ -352,6 +352,20 @@ const overlayLinks = document.querySelectorAll(".overlay-content a");
         
         highlightLink();
 
+
+function truncateComment(comment, maxLength = 100) {
+  if (comment.length > maxLength) {
+    return `${comment.slice(0, maxLength)}... <button class="see-more-btn" onclick="expandComment(this)">See More</button>`;
+  }
+  return comment;
+}
+
+// Function to expand the comment to its full length
+function expandComment(button) {
+  const commentCell = button.parentNode;
+  const fullComment = commentCell.dataset.fullComment;
+  commentCell.innerHTML = `${fullComment} <button class="see-less-btn" onclick="truncateComment(this.dataset.comment, ${commentCell.dataset.maxLength})">See Less</button>`;
+}
 
 // Initial table load
 loadHTMLTable(currentPage);

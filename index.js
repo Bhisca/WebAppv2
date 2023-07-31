@@ -82,7 +82,7 @@ function loadHTMLTable(page, searchValue = '') {
       tableHtml += `<td>${platform}</td>`;
       tableHtml += `<td>${status}</td>`;
       tableHtml += `<td>${new Date(date_added).toDateString()}</td>`;
-      tableHtml += `<td class="comment-cell" data-comment="${comment}" data-max-length="100">${truncateComment(comment)}</td>`;
+      tableHtml += `<td class="comment-cell" data-comment="${comment}" data-max-length="100">${formatComment(comment)}</td>`;
       tableHtml += "</tr>";
     });
 
@@ -367,32 +367,28 @@ const overlayLinks = document.querySelectorAll(".overlay-content a");
         highlightLink();
 
 
-function truncateComment(comment) {
+function formatComment(comment) {
   const maxLength = 100;
   if (comment.length > maxLength) {
-    return `${comment.slice(0, maxLength)}...`;
+    return `
+      <div class="comment-content">
+        <div class="short-comment">${comment.slice(0, maxLength)}...</div>
+        <div class="full-comment">${comment}</div>
+        <button class="see-more-btn">See More</button>
+      </div>
+    `;
   }
-  return comment;
+  return `<div class="comment-content">${comment}</div>`;
 }
 
-function expandComment(cell, fullComment) {
-  cell.textContent = fullComment;
-  const seeLessBtn = document.createElement('button');
-  seeLessBtn.classList.add('see-less-btn');
-  seeLessBtn.textContent = 'See Less';
-  seeLessBtn.addEventListener('click', () => truncateComment(cell, fullComment));
-  cell.appendChild(seeLessBtn);
-}
-
-function truncateComment(cell, commentText) {
-  const maxLength = parseInt(cell.dataset.maxLength);
-  const truncatedComment = commentText.slice(0, maxLength) + '...';
-  cell.textContent = truncatedComment;
-  const seeMoreBtn = document.createElement('button');
-  seeMoreBtn.classList.add('see-more-btn');
-  seeMoreBtn.textContent = 'See More';
-  seeMoreBtn.addEventListener('click', () => expandComment(cell, commentText));
-  cell.appendChild(seeMoreBtn);
-}
+document.addEventListener('click', function(event) {
+  if (event.target.classList.contains('see-more-btn')) {
+    const commentContent = event.target.parentNode;
+    commentContent.classList.add('expanded');
+  } else if (event.target.classList.contains('see-less-btn')) {
+    const commentContent = event.target.parentNode;
+    commentContent.classList.remove('expanded');
+  }
+});
 // Initial table load
 loadHTMLTable(currentPage);

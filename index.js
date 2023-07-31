@@ -399,7 +399,11 @@ document.addEventListener('click', function(event) {
       seeLessBtn.style.display = 'none';
       event.target.style.display = 'block';
     });
-    commentContent.appendChild(seeLessBtn);
+
+    const existingSeeLessBtn = commentContent.querySelector('.see-less-btn');
+    if (!existingSeeLessBtn) {
+      commentContent.appendChild(seeLessBtn);
+    }
   } else if (event.target.classList.contains('see-less-btn')) {
     const commentContent = event.target.parentNode;
     const fullComment = commentContent.querySelector('.full-comment');
@@ -417,7 +421,11 @@ document.addEventListener('click', function(event) {
       seeMoreBtn.style.display = 'none';
       event.target.style.display = 'block';
     });
-    commentContent.appendChild(seeMoreBtn);
+
+    const existingSeeMoreBtn = commentContent.querySelector('.see-more-btn');
+    if (!existingSeeMoreBtn) {
+      commentContent.appendChild(seeMoreBtn);
+    }
   }
 });
 // Initial table load

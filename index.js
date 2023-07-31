@@ -82,17 +82,24 @@ function loadHTMLTable(page, searchValue = '') {
       tableHtml += `<td>${platform}</td>`;
       tableHtml += `<td>${status}</td>`;
       tableHtml += `<td>${new Date(date_added).toDateString()}</td>`;
-      tableHtml += `<td class="comment" data-comment="${comment}" data-max-length="100">${formatComment(comment)}</td>`;
+      tableHtml += `<td class="comment-cell" data-comment="${comment}" data-max-length="100">${truncateComment(comment)}</td>`;
       tableHtml += "</tr>";
     });
 
     table.innerHTML = tableHtml;
 
-  const seeMoreButtons = document.querySelectorAll('.see-more-btn');
-  const seeLessButtons = document.querySelectorAll('.see-less-btn');
-
-  seeMoreButtons.forEach(button => button.addEventListener('click', expandComment));
-  seeLessButtons.forEach(button => button.addEventListener('click', truncateComment));
+  const commentCells = document.querySelectorAll('.comment-cell');
+  commentCells.forEach(cell => {
+    const commentText = cell.dataset.comment;
+    const maxLength = parseInt(cell.dataset.maxLength);
+    if (commentText.length > maxLength) {
+      const seeMoreBtn = document.createElement('button');
+      seeMoreBtn.classList.add('see-more-btn');
+      seeMoreBtn.textContent = 'See More';
+      seeMoreBtn.addEventListener('click', () => expandComment(cell, commentText));
+      cell.appendChild(seeMoreBtn);
+    }
+  });
 
 
     // Update the totalPages variable
@@ -360,28 +367,32 @@ const overlayLinks = document.querySelectorAll(".overlay-content a");
         highlightLink();
 
 
-function formatComment(comment) {
+function truncateComment(comment) {
   const maxLength = 100;
   if (comment.length > maxLength) {
-    return `${comment.slice(0, maxLength)}... <button class="see-more-btn">See More</button>`;
+    return `${comment.slice(0, maxLength)}...`;
   }
   return comment;
 }
 
-function expandComment(event) {
-  const button = event.target;
-  const commentCell = button.parentNode;
-  const fullComment = commentCell.dataset.comment;
-  commentCell.innerHTML = `${fullComment} <button class="see-less-btn">See Less</button>`;
+function expandComment(cell, fullComment) {
+  cell.textContent = fullComment;
+  const seeLessBtn = document.createElement('button');
+  seeLessBtn.classList.add('see-less-btn');
+  seeLessBtn.textContent = 'See Less';
+  seeLessBtn.addEventListener('click', () => truncateComment(cell, fullComment));
+  cell.appendChild(seeLessBtn);
 }
 
-function truncateComment(event) {
-  const button = event.target;
-  const commentCell = button.parentNode;
-  const maxLength = parseInt(commentCell.dataset.maxLength);
-  const truncatedComment = commentCell.dataset.comment.slice(0, maxLength) + `... <button class="see-more-btn">See More</button>`;
-  commentCell.innerHTML = truncatedComment;
+function truncateComment(cell, commentText) {
+  const maxLength = parseInt(cell.dataset.maxLength);
+  const truncatedComment = commentText.slice(0, maxLength) + '...';
+  cell.textContent = truncatedComment;
+  const seeMoreBtn = document.createElement('button');
+  seeMoreBtn.classList.add('see-more-btn');
+  seeMoreBtn.textContent = 'See More';
+  seeMoreBtn.addEventListener('click', () => expandComment(cell, commentText));
+  cell.appendChild(seeMoreBtn);
 }
-
 // Initial table load
 loadHTMLTable(currentPage);

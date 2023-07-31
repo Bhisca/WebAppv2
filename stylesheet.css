@@ -31,6 +31,7 @@ table, th, td {
 th, td {
   padding: 5px;
   text-align: left;
+  max-width: 200px;
 }
 
 th {
@@ -45,12 +46,8 @@ border: 1px solid rgb(255, 255, 255);
 tr:nth-child(even){background-color: #cfcfcf;}
 tr:hover {background-color: #a7a7a7;}
 
-th.comment {
-  width: 50px;
-}
 
 td.comment {
-        max-width: 50px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;

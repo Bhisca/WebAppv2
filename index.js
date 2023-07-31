@@ -388,6 +388,7 @@ document.addEventListener('click', function(event) {
     const shortComment = commentContent.querySelector('.short-comment');
     fullComment.style.display = 'block';
     shortComment.style.display = 'none';
+    event.target.style.display = 'none';
 
     const seeLessBtn = document.createElement('button');
     seeLessBtn.classList.add('see-less-btn');
@@ -395,16 +396,17 @@ document.addEventListener('click', function(event) {
     seeLessBtn.addEventListener('click', () => {
       fullComment.style.display = 'none';
       shortComment.style.display = 'block';
+      event.target.style.display = 'block';
+      seeLessBtn.remove();
     });
     commentContent.appendChild(seeLessBtn);
-
-    event.target.style.display = 'none';
   } else if (event.target.classList.contains('see-less-btn')) {
     const commentContent = event.target.parentNode;
     const fullComment = commentContent.querySelector('.full-comment');
     const shortComment = commentContent.querySelector('.short-comment');
     fullComment.style.display = 'none';
     shortComment.style.display = 'block';
+    event.target.style.display = 'none';
 
     const seeMoreBtn = document.createElement('button');
     seeMoreBtn.classList.add('see-more-btn');
@@ -412,10 +414,10 @@ document.addEventListener('click', function(event) {
     seeMoreBtn.addEventListener('click', () => {
       fullComment.style.display = 'block';
       shortComment.style.display = 'none';
+      event.target.style.display = 'block';
+      seeMoreBtn.remove();
     });
     commentContent.appendChild(seeMoreBtn);
-
-    event.target.style.display = 'none';
   }
 });
 // Initial table load

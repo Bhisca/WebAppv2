@@ -307,7 +307,11 @@ function convertRowToCSV(rowData) {
 }
 
 
-
+function handleMenuItemClick(event) {
+  const menuItems = document.querySelectorAll('.overlay-content a');
+  menuItems.forEach(item => item.classList.remove('selected'));
+  event.target.classList.add('selected');
+}
 
 
 // Initial table load

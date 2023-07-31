@@ -36,6 +36,10 @@ th, td {
   text-overflow: ellipsis;
 }
 
+td {
+  height: 30px;
+}
+
 th {
   padding-top: 12px;
 padding-bottom: 12px;

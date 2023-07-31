@@ -82,7 +82,7 @@ function loadHTMLTable(page, searchValue = '') {
       tableHtml += `<td>${platform}</td>`;
       tableHtml += `<td>${status}</td>`;
       tableHtml += `<td>${new Date(date_added).toDateString()}</td>`;
-      tableHtml += `<td class="comment" data-comment="${comment}" data-max-length="100" data-expanded="false">${truncateComment(comment)}</td>`;
+      tableHtml += `<td class="comment" data-comment="${comment}" data-max-length="100">${formatComment(comment)}</td>`;
       tableHtml += "</tr>";
     });
 
@@ -353,24 +353,25 @@ const overlayLinks = document.querySelectorAll(".overlay-content a");
         highlightLink();
 
 
-function truncateComment(comment) {
+function formatComment(comment) {
   const maxLength = 100;
   if (comment.length > maxLength) {
-    return `${comment.slice(0, maxLength)}... <button class="see-more-btn" onclick="toggleCommentExpansion(this)">See More</button>`;
+    return `${comment.slice(0, maxLength)}... <button class="see-more-btn" onclick="expandComment(this)">See More</button>`;
   }
   return comment;
 }
 
-function toggleCommentExpansion(button) {
+function expandComment(button) {
   const commentCell = button.parentNode;
-  const expanded = commentCell.dataset.expanded === "true";
-  if (expanded) {
-    commentCell.innerHTML = truncateComment(commentCell.dataset.comment);
-    commentCell.dataset.expanded = "false";
-  } else {
-    commentCell.innerHTML = `${commentCell.dataset.comment} <button class="see-less-btn" onclick="toggleCommentExpansion(this)">See Less</button>`;
-    commentCell.dataset.expanded = "true";
-  }
+  const fullComment = commentCell.dataset.comment;
+  commentCell.innerHTML = `${fullComment} <button class="see-less-btn" onclick="truncateComment(this)">See Less</button>`;
+}
+
+function truncateComment(button) {
+  const commentCell = button.parentNode;
+  const maxLength = parseInt(commentCell.dataset.maxLength);
+  const truncatedComment = commentCell.dataset.comment.slice(0, maxLength) + `... <button class="see-more-btn" onclick="expandComment(this)">See More</button>`;
+  commentCell.innerHTML = truncatedComment;
 }
 // Initial table load
 loadHTMLTable(currentPage);

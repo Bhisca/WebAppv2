@@ -307,24 +307,20 @@ function convertRowToCSV(rowData) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  // Get all overlay links
-  const overlayLinks = document.querySelectorAll('.overlay-content a');
+  const overlayContent = document.querySelector('.overlay-content');
 
-  // Add a click event listener to each overlay link
-  overlayLinks.forEach(link => {
-    link.addEventListener('click', function (event) {
+  overlayContent.addEventListener('click', function (event) {
+    if (event.target.tagName === 'A') {
       // Remove 'selected' class from all overlay links
+      const overlayLinks = overlayContent.querySelectorAll('a');
       overlayLinks.forEach(link => link.classList.remove('selected'));
 
       // Add 'selected' class to the clicked overlay link
-      this.classList.add('selected');
+      event.target.classList.add('selected');
 
       // Prevent the default link behavior
       event.preventDefault();
-
-      // Stop the event from propagating to the parent elements (the overlay div)
-      event.stopPropagation();
-    });
+    }
   });
 
   // Add a click event listener to the overlay div
@@ -336,6 +332,5 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
-
 // Initial table load
 loadHTMLTable(currentPage);

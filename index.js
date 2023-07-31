@@ -82,7 +82,7 @@ function loadHTMLTable(page, searchValue = '') {
       tableHtml += `<td>${platform}</td>`;
       tableHtml += `<td>${status}</td>`;
       tableHtml += `<td>${new Date(date_added).toDateString()}</td>`;
-      tableHtml += `<td>${comment}</td>`;
+      tableHtml += `<td title="${comment}">${comment}</td>`;
       tableHtml += "</tr>";
     });
 

@@ -331,31 +331,3 @@ ul.options-menu li {
 ul.options-menu li:hover {
   background-color: #e1e1e1;
 }
-
-.see-more-btn,
-.see-less-btn {
-  background: none;
-  border: none;
-  color: blue;
-  cursor: pointer;
-  font-size: 14px;
-  text-decoration: underline;
-  margin-left: 5px;
-}
-
-.comment-content {
-  position: relative;
-  overflow: hidden;
-}
-
-.full-comment {
-  display: none;
-}
-
-.comment-content.expanded .short-comment {
-  display: none;
-}
-
-.comment-content.expanded .full-comment {
-  display: block;
-}

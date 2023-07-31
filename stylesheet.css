@@ -112,6 +112,10 @@ position: absolute;
   margin-top: 10px;
 }
 
+.overlay-content a.selected {
+  background-color: #a7a7a7;
+}
+
 .overlay-content a:nth-child(odd) {
   background-color: orange;
   color: white;

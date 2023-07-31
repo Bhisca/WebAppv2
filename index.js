@@ -82,24 +82,13 @@ function loadHTMLTable(page, searchValue = '') {
       tableHtml += `<td>${platform}</td>`;
       tableHtml += `<td>${status}</td>`;
       tableHtml += `<td>${new Date(date_added).toDateString()}</td>`;
-      tableHtml += `<td class="comment-cell" data-comment="${comment}" data-max-length="100">${formatComment(comment)}</td>`;
+      tableHtml += `<td>${comment}</td>`;
       tableHtml += "</tr>";
     });
 
     table.innerHTML = tableHtml;
 
-  const commentCells = document.querySelectorAll('.comment-cell');
-  commentCells.forEach(cell => {
-    const commentText = cell.dataset.comment;
-    const maxLength = parseInt(cell.dataset.maxLength);
-    if (commentText.length > maxLength) {
-      const seeMoreBtn = document.createElement('button');
-      seeMoreBtn.classList.add('see-more-btn');
-      seeMoreBtn.textContent = 'See More';
-      seeMoreBtn.addEventListener('click', () => expandComment(cell, commentText));
-      cell.appendChild(seeMoreBtn);
-    }
-  });
+ 
 
 
     // Update the totalPages variable
@@ -367,66 +356,5 @@ const overlayLinks = document.querySelectorAll(".overlay-content a");
         highlightLink();
 
 
-function formatComment(comment) {
-  const maxLength = 100;
-  if (comment.length > maxLength) {
-    return `
-      <div class="comment-content">
-        <div class="short-comment">${comment.slice(0, maxLength)}...</div>
-        <div class="full-comment" style="display: none;">${comment}</div>
-        <button class="see-more-btn">See More</button>
-      </div>
-    `;
-  }
-  return `<div class="comment-content">${comment}</div>`;
-}
-
-document.addEventListener('click', function(event) {
-  if (event.target.classList.contains('see-more-btn')) {
-    const commentContent = event.target.parentNode;
-    const fullComment = commentContent.querySelector('.full-comment');
-    const shortComment = commentContent.querySelector('.short-comment');
-    fullComment.style.display = 'block';
-    shortComment.style.display = 'none';
-    event.target.style.display = 'none';
-
-    const seeLessBtn = document.createElement('button');
-    seeLessBtn.classList.add('see-less-btn');
-    seeLessBtn.textContent = 'See Less';
-    seeLessBtn.addEventListener('click', () => {
-      fullComment.style.display = 'none';
-      shortComment.style.display = 'block';
-      seeLessBtn.style.display = 'none';
-      event.target.style.display = 'block';
-    });
-
-    const existingSeeLessBtn = commentContent.querySelector('.see-less-btn');
-    if (!existingSeeLessBtn) {
-      commentContent.appendChild(seeLessBtn);
-    }
-  } else if (event.target.classList.contains('see-less-btn')) {
-    const commentContent = event.target.parentNode;
-    const fullComment = commentContent.querySelector('.full-comment');
-    const shortComment = commentContent.querySelector('.short-comment');
-    fullComment.style.display = 'none';
-    shortComment.style.display = 'block';
-    event.target.style.display = 'none';
-
-    const seeMoreBtn = document.createElement('button');
-    seeMoreBtn.classList.add('see-more-btn');
-    seeMoreBtn.textContent = 'See More';
-    seeMoreBtn.addEventListener('click', () => {
-      fullComment.style.display = 'block';
-      shortComment.style.display = 'none';
-      seeMoreBtn.style.display = 'none';
-      event.target.style.display = 'block';
-    });
-
-    const existingSeeMoreBtn = commentContent.querySelector('.see-more-btn');
-    if (!existingSeeMoreBtn) {
-      commentContent.appendChild(seeMoreBtn);
-    }
-  }
-});
 // Initial table load
 loadHTMLTable(currentPage);

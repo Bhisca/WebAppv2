@@ -44,6 +44,21 @@ border: 1px solid rgb(255, 255, 255);
 tr:nth-child(even){background-color: #cfcfcf;}
 tr:hover {background-color: #a7a7a7;}
 
+td.comment {
+            max-width: 200px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        
+       td.comment:hover {
+            white-space: normal;
+            overflow: visible;
+            z-index: 1;
+            position: relative;
+        }
+
 
 #search-input {
   width: 51%;

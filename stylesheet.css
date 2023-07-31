@@ -60,7 +60,7 @@ td.comment {
         position: absolute;
         top: 100%;
         left: 0;
-        width: 200px; /* Adjust this value as needed */
+        width: 100px; /* Adjust this value as needed */
         background-color: #fff;
         padding: 5px;
         border: 1px solid #ddd;

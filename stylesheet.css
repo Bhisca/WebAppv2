@@ -138,6 +138,7 @@ position: absolute;
   color: #f0f0f0;
   display: block;
   transition: 0s;
+  border-radius: 15px;
 }
 
 .overlay a:hover,
@@ -152,7 +153,10 @@ position: absolute;
   font-size: 60px;
 }
 
-
+.overlay-content a.active {
+  background-color: #a7a7a7;
+  color: white;
+}
 
 
 

@@ -306,15 +306,22 @@ function convertRowToCSV(rowData) {
   return cells.join(',');
 }
 
-const overlayLinks = document.querySelectorAll('.overlay-content a');
-overlayLinks.forEach(link => {
-  link.addEventListener('click', function (event) {
-    // Remove 'selected' class from all overlay links
-    overlayLinks.forEach(link => link.classList.remove('selected'));
+document.addEventListener('DOMContentLoaded', function () {
+  // Get all overlay links
+  const overlayLinks = document.querySelectorAll('.overlay-content a');
 
-    // Add 'selected' class to the clicked overlay link
-    this.classList.add('selected');
-    
+  // Add a click event listener to each overlay link
+  overlayLinks.forEach(link => {
+    link.addEventListener('click', function (event) {
+      // Remove 'selected' class from all overlay links
+      overlayLinks.forEach(link => link.classList.remove('selected'));
+
+      // Add 'selected' class to the clicked overlay link
+      this.classList.add('selected');
+
+      // Prevent the default link behavior
+      event.preventDefault();
+    });
   });
 });
 

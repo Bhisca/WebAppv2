@@ -129,9 +129,6 @@ position: absolute;
   background-color: #f0f0f0;
 }
 
-.overlay-content a.selected {
-  background-color: #a7a7a7;
-}
 
 .overlay a {
   margin-top: -10px;

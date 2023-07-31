@@ -140,9 +140,12 @@ position: absolute;
 }
 
 .overlay a:hover,
-.overlay a:focus {
+.overlay a:focus,
+.overlay a:active{
   color: #f1f1f1;
 }
+
+
 
 .overlay .closebtn {
   position: left;

@@ -36,9 +36,6 @@ th, td {
   text-overflow: ellipsis;
 }
 
-td {
-  height: 30px;
-}
 
 th {
   padding-top: 12px;
@@ -52,29 +49,6 @@ border: 1px solid rgb(255, 255, 255);
 tr:nth-child(even){background-color: #cfcfcf;}
 tr:hover {background-color: #a7a7a7;}
 
-
-td.comment {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        position: relative; 
-    }
-
-    
-    td.comment:hover::after {
-        content: attr(data-comment);
-        white-space: pre-wrap;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100px; /* Adjust this value as needed */
-        background-color: #fff;
-        padding: 5px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-    }
 
 
 #search-input {

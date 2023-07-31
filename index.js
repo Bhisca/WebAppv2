@@ -321,7 +321,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Prevent the default link behavior
       event.preventDefault();
+
+      // Stop the event from propagating to the parent elements (the overlay div)
+      event.stopPropagation();
     });
+  });
+
+  // Add a click event listener to the overlay div
+  const overlay = document.getElementById('myNav');
+  overlay.addEventListener('click', function (event) {
+    // Close the overlay when clicking outside the overlay content
+    if (!event.target.classList.contains('overlay-content')) {
+      closeOverlay();
+    }
   });
 });
 

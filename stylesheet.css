@@ -198,7 +198,7 @@ position: absolute;
   background-color: rgb(148, 148, 148);
 }
 
-#add-entry-btn {
+#add-new-entry-btn {
   background-color: white;
   margin-left: 150px;
   margin-top: 10px;
@@ -212,7 +212,7 @@ position: absolute;
 
 }
 
-#add-entry-btn:hover{
+#add-new-entry-btn:hover{
   background-color: rgb(148, 148, 148);
 }
 
@@ -266,6 +266,30 @@ input[type="text"] {
   margin-bottom: 10px;
 }
 
+#popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+#popup-form {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 3;
+  border-radius: 15px;
+}
+
 input[type="submit"] {
   padding: 8px 20px;
   background-color: orange;
@@ -273,6 +297,17 @@ input[type="submit"] {
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  font-family: 'Trebuchet MS', sans-serif;
+}
+
+#close-btn {
+  padding: 8px 20px;
+  background-color: orange;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-family: 'Trebuchet MS', sans-serif;
 }
 
 ul.options-menu {

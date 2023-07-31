@@ -150,12 +150,6 @@ position: absolute;
   color: #f1f1f1;
 }
 
-.overlay-content a:active,
-.overlay-content a:focus{
-  background-color: #f1f1f1;
-  color: white;
-}
-
 
 .overlay .closebtn {
   position: left;

@@ -373,7 +373,7 @@ function formatComment(comment) {
     return `
       <div class="comment-content">
         <div class="short-comment">${comment.slice(0, maxLength)}...</div>
-        <div class="full-comment">${comment}</div>
+        <div class="full-comment" style="display: none;">${comment}</div>
         <button class="see-more-btn">See More</button>
       </div>
     `;
@@ -384,10 +384,38 @@ function formatComment(comment) {
 document.addEventListener('click', function(event) {
   if (event.target.classList.contains('see-more-btn')) {
     const commentContent = event.target.parentNode;
-    commentContent.classList.add('expanded');
+    const fullComment = commentContent.querySelector('.full-comment');
+    const shortComment = commentContent.querySelector('.short-comment');
+    fullComment.style.display = 'block';
+    shortComment.style.display = 'none';
+
+    const seeLessBtn = document.createElement('button');
+    seeLessBtn.classList.add('see-less-btn');
+    seeLessBtn.textContent = 'See Less';
+    seeLessBtn.addEventListener('click', () => {
+      fullComment.style.display = 'none';
+      shortComment.style.display = 'block';
+    });
+    commentContent.appendChild(seeLessBtn);
+
+    event.target.style.display = 'none';
   } else if (event.target.classList.contains('see-less-btn')) {
     const commentContent = event.target.parentNode;
-    commentContent.classList.remove('expanded');
+    const fullComment = commentContent.querySelector('.full-comment');
+    const shortComment = commentContent.querySelector('.short-comment');
+    fullComment.style.display = 'none';
+    shortComment.style.display = 'block';
+
+    const seeMoreBtn = document.createElement('button');
+    seeMoreBtn.classList.add('see-more-btn');
+    seeMoreBtn.textContent = 'See More';
+    seeMoreBtn.addEventListener('click', () => {
+      fullComment.style.display = 'block';
+      shortComment.style.display = 'none';
+    });
+    commentContent.appendChild(seeMoreBtn);
+
+    event.target.style.display = 'none';
   }
 });
 // Initial table load

@@ -307,5 +307,51 @@ function convertRowToCSV(rowData) {
 }
 
 
+const overlayLinks = document.querySelectorAll(".overlay-content a");
+
+       
+        function handleClick(event) {
+            event.preventDefault(); 
+            overlayLinks.forEach(link => {
+                link.classList.remove("active");
+            });
+
+            event.target.classList.add("active");
+
+            const linkHref = event.target.getAttribute("href");
+            if (linkHref) {
+                window.location.href = linkHref;
+            }
+        }
+
+        
+        overlayLinks.forEach(link => {
+            link.addEventListener("click", handleClick);
+        });
+
+        
+        function highlightLink() {
+            const currentPageURL = window.location.href;
+            let isLinkHighlighted = false;
+            overlayLinks.forEach(link => {
+                const linkURL = new URL(link.href); 
+                const currentURL = new URL(currentPageURL); 
+                if (linkURL.pathname === currentURL.pathname) {
+                    link.classList.add("active");
+                    isLinkHighlighted = true;
+                }
+            });
+
+           
+            if (!isLinkHighlighted) {
+                const homeLink = document.querySelector(".overlay-content a[href='index.html']");
+                homeLink.classList.add("active");
+            }
+        }
+
+        
+        highlightLink();
+
+
 // Initial table load
 loadHTMLTable(currentPage);

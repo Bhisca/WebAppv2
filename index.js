@@ -307,11 +307,20 @@ function convertRowToCSV(rowData) {
 }
 
 
-function handleMenuItemClick(event) {
-  const menuItems = document.querySelectorAll('.overlay-content a');
-  menuItems.forEach(item => item.classList.remove('selected'));
-  event.target.classList.add('selected');
-}
+document.addEventListener('DOMContentLoaded', function () {
+    const menuItems = document.querySelectorAll('.overlay-content a');
+
+    function handleMenuItemClick(event) {
+      // Remove the 'selected' class from all menu items
+      menuItems.forEach(item => item.classList.remove('selected'));
+
+      // Add the 'selected' class to the clicked menu item
+      event.target.classList.add('selected');
+    }
+
+    // Add click event listener to each menu item
+    menuItems.forEach(item => item.addEventListener('click', handleMenuItemClick));
+  });
 
 
 // Initial table load

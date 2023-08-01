@@ -45,6 +45,7 @@ text-align: left;
 background-color: orange;
 color: white;
 border: 1px solid rgb(255, 255, 255);
+  resize: horizontal;
 }
 
 tr:nth-child(even){background-color: #cfcfcf;}

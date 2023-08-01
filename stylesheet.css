@@ -321,6 +321,7 @@ ul.options-menu {
   margin: 0;
   border: 1px solid #ddd;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
 }
 
 ul.options-menu li {
@@ -330,6 +331,7 @@ ul.options-menu li {
 
 ul.options-menu li:hover {
   background-color: #e1e1e1;
+  border-radius: 15px;
 }
 
 td[title] {
@@ -351,4 +353,33 @@ td[title]:hover::before {
     border-radius: 4px;
     white-space: nowrap;
     z-index: 1;
+}
+
+.details-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+}
+
+.details-modal {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.details-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 24px;
 }

@@ -239,6 +239,7 @@ function showOptionsMenu(x, y, rowId) {
   optionsMenu.className = 'options-menu';
   optionsMenu.innerHTML = `
     <li id="export-option">Export row</li>
+    <li id="details-option">Details</li>
   `;
 
   // Handle the export option click event
@@ -246,6 +247,50 @@ function showOptionsMenu(x, y, rowId) {
   exportOption.addEventListener('click', function() {
     exportRowToCSVFile(rowId);
   });
+
+  const detailsOption = optionsMenu.querySelector('#details-option');
+  detailsOption.addEventListener('click', function() {
+    showDetailsPopup(rowId);
+  });
+
+  function showDetailsPopup(rowId) {
+    const table = document.getElementById('table');
+    const row = table.querySelector(`td[data-id="${rowId}"]`).closest('tr');
+  
+    // Extract the details from the row
+    const id = row.querySelector('td[data-id]').textContent;
+    const name = row.querySelector('td:nth-child(2)').textContent;
+    const platform = row.querySelector('td:nth-child(3)').textContent;
+    const status = row.querySelector('td:nth-child(4)').textContent;
+    const date_added = row.querySelector('td:nth-child(5)').textContent;
+    const comment = row.querySelector('td:nth-child(6)').textContent;
+  
+    // Create the pop-up window content
+    const popupContent = `
+      <div class="details-modal"> <!-- Use the unique class name -->
+        <h2>Details for Row ID: ${id}</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Platform:</strong> ${platform}</p>
+        <p><strong>Status:</strong> ${status}</p>
+        <p><strong>Date Added:</strong> ${date_added}</p>
+        <p><strong>Comment:</strong> ${comment}</p>
+        <span class="details-close-btn">&times;</span> <!-- Use the unique class name -->
+      </div>
+    `;
+  
+    // Create the overlay
+    const overlay = document.createElement('div');
+    overlay.classList.add('details-overlay'); // Use the unique class name
+    overlay.innerHTML = popupContent;
+  
+    // Handle the close button click event
+    const closeBtn = overlay.querySelector('.details-close-btn');
+    closeBtn.addEventListener('click', () => {
+      document.body.removeChild(overlay);
+    });
+  
+    document.body.appendChild(overlay);
+  }
 
   // Position the menu and append it to the body
   optionsMenu.style.left = x + 'px';

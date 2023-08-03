@@ -410,7 +410,7 @@ const fileInput = document.getElementById("csvFileInput");
             const fileName = fileInput.files[0].name;
             fileLabel.textContent = fileName;
           } else {
-            fileLabel.textContent = "Select a CSV file to import:";
+            fileLabel.textContent = "Select File";
           }
         }
         

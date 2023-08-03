@@ -430,7 +430,7 @@ function handleImport() {
   const formData = new FormData();
   formData.append("csvFile", file);
 
-  fetch("http://localhost:5000/import", {
+  fetch("https://allowapps.onrender.com/import", {
     method: "POST",
     body: formData,
   })

@@ -2,9 +2,14 @@ const express = require('express');
 const app = express(); 
 const cors = require('cors');
 const dotenv = require('dotenv');
+const multer = require('multer');
+const csvParser = require('csv-parser');
+const fs = require("fs");
+
 dotenv.config();
 
 const dbService = require('./dbService');
+const upload = multer({ dest: "uploads/" });
   
 app.use(cors()); 
 app.use(express.json()); 
@@ -48,10 +53,42 @@ app.get('/getAll', (request, response) => {
       .catch(err => console.log(err));
   });
 
-//update
-
-
-//delete  
+app.post("/import", upload.single("csvFile"), (request, response) => {
+    if (!request.file) {
+      response.json({ success: false, message: "No file selected." });
+      return;
+    }
+  
+    const filePath = request.file.path;
+  
+    const results = [];
+    fs.createReadStream(filePath)
+      .pipe(csvParser())
+      .on("data", (data) => results.push(data))
+      .on("end", () => {
+        const db = dbService.getDbServiceInstance();
+        const importPromises = results.map((entry) =>
+          db.insertNewEntry(
+            entry.name,
+            entry.platform,
+            entry.status,
+            entry.date_added,
+            entry.comment
+          )
+        );
+  
+        Promise.all(importPromises)
+          .then(() => {
+            fs.unlinkSync(filePath); // Delete the temporary CSV file
+            response.json({ success: true });
+          })
+          .catch((err) => {
+            fs.unlinkSync(filePath); // Delete the temporary CSV file in case of an error
+            console.log(err);
+            response.json({ success: false, message: "Error importing data." });
+          });
+      });
+  });
 
 
 

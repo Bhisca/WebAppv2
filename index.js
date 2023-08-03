@@ -447,6 +447,9 @@ function handleImport() {
       alert("Data imported successfully.");
       console.log(err);
     });
+
+  fileInput.value = "";
+  updateLabel();
 }
 
 

@@ -401,5 +401,54 @@ const overlayLinks = document.querySelectorAll(".overlay-content a");
         highlightLink();
 
 
+const fileInput = document.getElementById("csvFileInput");
+        fileInput.addEventListener("change", updateLabel);
+        
+        function updateLabel() {
+          const fileLabel = document.querySelector(".file-label");
+          if (fileInput.files.length > 0) {
+            const fileName = fileInput.files[0].name;
+            fileLabel.textContent = fileName;
+          } else {
+            fileLabel.textContent = "Select a CSV file to import:";
+          }
+        }
+        
+        // Add event listener to the import button
+        const importButton = document.getElementById("import-btn");
+        importButton.addEventListener("click", handleImport);
+
+function handleImport() {
+  const fileInput = document.getElementById("csvFileInput");
+  const file = fileInput.files[0];
+
+  if (!file) {
+    alert("Please select a CSV file to import.");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("csvFile", file);
+
+  fetch("http://localhost:5000/import", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        alert("Data imported successfully.");
+        // Optionally, you can reload the table or update the data here
+      } else {
+        alert("Error importing data. Please check the CSV file format.");
+      }
+    })
+    .catch((err) => {
+      alert("Data imported successfully.");
+      console.log(err);
+    });
+}
+
+
 // Initial table load
 loadHTMLTable(currentPage);

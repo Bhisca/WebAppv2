@@ -385,3 +385,59 @@ td[title]:hover::before {
   cursor: pointer;
   font-size: 24px;
 }
+
+
+#import-section {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 400px;
+  margin-top: 10px;
+  font-family: 'Trebuchet MS', sans-serif;
+}
+
+
+.file-input {
+  width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+#import-btn {
+  background-color: white;
+  
+  float: right;
+  font-size: medium;
+  text-align: center;
+  border-radius: 5px;
+  height: 35px;
+  cursor: pointer;
+  margin-left: 5px;
+  font-family: 'Trebuchet MS', sans-serif;
+}
+
+#import-btn:hover {
+  background-color: rgb(148, 148, 148);
+}
+
+.file-input + label {
+  background-color: orange;
+  border-radius: 5px;
+  border: 2px solid white;
+  float: right;
+  font-size: medium;
+  color: white;
+  height: 25px;
+  cursor: pointer;
+  padding-top: 5px;
+  font-family: 'Trebuchet MS', sans-serif;
+}
+
+
+.file-input + label:hover {
+  background-color: rgb(148, 148, 148);
+}

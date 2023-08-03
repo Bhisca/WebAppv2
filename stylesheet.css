@@ -435,6 +435,8 @@ td[title]:hover::before {
   cursor: pointer;
   padding-top: 5px;
   font-family: 'Trebuchet MS', sans-serif;
+  padding-left: 2px;
+  padding-right: 2px;
 }
 
 
